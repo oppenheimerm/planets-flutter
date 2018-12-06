@@ -11,6 +11,7 @@ class HomePageBody extends StatelessWidget {
         new PlanetRow(planets[0]),
         new PlanetRow(planets[1]),
         new PlanetRow(planets[2]),
-      ],);
+      ],
+      );
   }
 }
