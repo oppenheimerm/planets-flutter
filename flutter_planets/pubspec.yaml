@@ -60,6 +60,8 @@ flutter:
       fonts:
         - asset: fonts/Poppins-SemiBold.ttf
           weight: 600
+        - asset: assets/fonts/Poppins-Regular.ttf
+          weight: 400
 
 
   #   - family: Schyler
