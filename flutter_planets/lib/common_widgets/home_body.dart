@@ -6,12 +6,42 @@ import 'package:flutter_planets/models/planet_model.dart';
 class HomePageBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new Column(
-      children: <Widget>[
-        new PlanetRow(planets[0]),
-        new PlanetRow(planets[1]),
-        new PlanetRow(planets[2]),
-      ],
-      );
+    //  Using an Expanded widget makes a child of a Row, Column, or Flex 
+    //  expand to fill the available space in the main axis (e.g., horizontally 
+    //  for a Row or vertically for a Column).  
+    //  see: https://docs.flutter.io/flutter/widgets/Expanded-class.html
+    /*return new Expanded(
+      child: new ListView.builder(
+        itemBuilder: (context, index) => new PlanetRow(planets[index]),
+        itemCount: planets.length,
+      ),
+    );*/
+
+    //  Using slivers instead of the the standard ListView
+    return new Expanded(
+      child: new Container(
+        color:new Color(0xFF736AB7),
+        child: new CustomScrollView(
+          scrollDirection: Axis.vertical,
+          slivers: <Widget>[
+            new SliverPadding(
+              padding: const EdgeInsets.symmetric(vertical: 24.0),
+              //  The list of items is created with a SliverFixedExtentList, this allows 
+              //  us to create a list of items with the same height.
+              sliver: new SliverFixedExtentList(
+                itemExtent: 152.0,
+                //  We provide a SliverChildBuilderDelegate as delegate. This works similar 
+                //  to the ListView.builder, by providing a function to create each item and 
+                //  the number of items.
+                delegate: new SliverChildBuilderDelegate(
+                  (context, index) => new PlanetRow(planets[index]),
+                  childCount: planets.length,
+                ),
+              ),
+            )
+          ],
+        )
+      ),
+    );
   }
 }
