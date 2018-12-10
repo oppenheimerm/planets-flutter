@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_planets/common_widgets/planet_row.dart';
+import 'package:flutter_planets/common_widgets/planet_summary.dart';
 import 'package:flutter_planets/models/planet_model.dart';
 
 //  Represents a body element for our home page
@@ -23,18 +23,16 @@ class HomePageBody extends StatelessWidget {
         color:new Color(0xFF736AB7),
         child: new CustomScrollView(
           scrollDirection: Axis.vertical,
+          shrinkWrap: false,
           slivers: <Widget>[
             new SliverPadding(
               padding: const EdgeInsets.symmetric(vertical: 24.0),
-              //  The list of items is created with a SliverFixedExtentList, this allows 
-              //  us to create a list of items with the same height.
-              sliver: new SliverFixedExtentList(
-                itemExtent: 152.0,
-                //  We provide a SliverChildBuilderDelegate as delegate. This works similar 
+              sliver: new SliverList(
+                 //  We provide a SliverChildBuilderDelegate as delegate. This works similar 
                 //  to the ListView.builder, by providing a function to create each item and 
                 //  the number of items.
                 delegate: new SliverChildBuilderDelegate(
-                  (context, index) => new PlanetRow(planets[index]),
+                  (context, index) => new PlanetSummary(planets[index]),
                   childCount: planets.length,
                 ),
               ),
